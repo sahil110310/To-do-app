@@ -44,6 +44,7 @@
     ]
   },
   "devDependencies": {
-    "@types/mongoose": "^5.7.24"
+    "@types/mongoose": "^5.7.24",
+    "gh-pages": "^3.0.0"
   }
 }

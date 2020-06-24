@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 
 class Signup extends Component {
 
@@ -37,11 +37,21 @@ class Signup extends Component {
             "email":this.state.email,
             "password":this.state.password
         }
+        const data1=
+        {
+            "username":this.state.name
+        }
         console.log(data);
+        axios.post('http://localhost:5000/activity/add/',
+        data1,  {headers:{'Content-Type': 'application/json','Accept': 'application/json'}
+    } ) .then(res => {})
+    .catch(function(error){console.log(error.message);console.log("RR");});
+    
      axios.post('http://localhost:5000/registers/add/',
         data,  {headers:{'Content-Type': 'application/json','Accept': 'application/json'}
     } ) .then(res => {this.setState({user:res.data});})
     .catch(function(error){console.log(error.message);console.log("RR");});
+    
     
            
     
@@ -67,10 +77,9 @@ class Signup extends Component {
   render()
   {
       
-
-    if(this.state.go=='yes')
+    if(this.state.user!=null)
     {
-        return <h1>Registered successfully</h1>
+       return(<Redirect to="/To-do-app/user/activity/"></Redirect>);
     }
    return (<div>
      Username:

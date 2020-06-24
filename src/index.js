@@ -6,6 +6,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Login from './Login';
 import signup from './signup';
+import Activity from './Activity';
 
 ReactDOM.render(
 <BrowserRouter>
@@ -15,6 +16,7 @@ ReactDOM.render(
      <Route path="/To-do-app/" exact component={App} />
      <Route path='/To-do-app/login/' exact component={Login}></Route> 
      <Route path='/To-do-app/signup/' exact component={signup}></Route> 
+     <Route path='/To-do-app/user/activity' exact component={Activity}></Route> 
    
  
    

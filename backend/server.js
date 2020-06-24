@@ -15,8 +15,10 @@ connection.once('open', () => {console.log("Mongobd started sucessfully")});
 
 const registerRouter = require('./routes/registers');
 const userRouter = require('./routes/users');
+const activityRouter = require('./routes/activity');
 app.use('/registers', registerRouter);
 app.use('/users', userRouter);
+app.use('/activity',activityRouter);
 
 
 app.listen(port, ()=> {
