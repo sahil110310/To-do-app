@@ -32,4 +32,26 @@ router.route('/fin').post((req,res) => {
 
   
 });
+router.route('/find').post((req,res) => {
+    const username = req.body.username;
+   
+   Activity.findOne({username:username})
+     .then(registers => res.json(registers))
+ .catch(err => res.status(400).json('Error: ' + err));
+    
+
+  
+});
+
+router.route('/del').post((req,res) =>{
+    const username = req.body.username;
+    const activity =req.body.activity;
+    Activity.update(
+        { username: username },
+        { $pull: { activity: activity  } }
+     ).then(registers=> {Activity.findOne({username:username})
+     .then(registers => res.json(registers))
+ .catch(err => res.status(400).json('Error: ' + err));})
+     .catch(err => res.status(400).json('Error: ' + err))
+});
 module.exports = router;

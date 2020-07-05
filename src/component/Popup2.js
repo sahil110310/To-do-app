@@ -1,6 +1,8 @@
 import React from 'react';  
 import './style.css';  
 import axios from 'axios';
+import { setCookie } from '../App';
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 class Popup2 extends React.Component {  
 
     constructor(props)
@@ -38,14 +40,11 @@ class Popup2 extends React.Component {
             "username":this.state.name
         }
         console.log(data);
-        axios.post('http://localhost:5000/activity/add/',
-        data1,  {headers:{'Content-Type': 'application/json','Accept': 'application/json'}
-    } ) .then(res => {})
-    .catch(function(error){console.log(error.message);console.log("RR");});
+      
     
      axios.post('http://localhost:5000/registers/add/',
         data,  {headers:{'Content-Type': 'application/json','Accept': 'application/json'}
-    } ) .then(res => {this.setState({user:res.data});})
+    } ) .then(res => {this.setState({user:res.data});setCookie('username',this.state.name,100000);})
     .catch(function(error){console.log(error.message);console.log("RR");});
     
     
@@ -73,7 +72,12 @@ class Popup2 extends React.Component {
 
 
 
-  render() {  
+  render() { 
+      
+    if(this.state.user!=null)
+    {
+       return(<Redirect to="/To-do-app/user/activity/"></Redirect>);
+    }
 return (  
 <div className='popup'>  
 <div className='popup\_inner'>  

@@ -1,0 +1,47 @@
+.activity-button
+{
+    background-color:transparent;
+    margin: 1%;
+    border: white;
+    color: rgb(255,255, 255);
+    font-size: larger;
+    font-weight: bolder;
+    
+    
+}
+.activity-h1
+{
+    color: white;
+}
+.activity-button2
+{
+    margin:2%;
+    color: white;
+    background-color: blue;
+    border: white;
+}
+.box1
+{
+    height: auto;
+    width: 50%;
+    border: black 2px solid;
+    border-radius: 5%;
+    background-color: black;
+    text-align: center;
+    
+}
+.box2
+{
+    height: 50px;
+    width: 70%;
+    margin: 5%;
+    margin-left: 15%;
+    border:white 2px solid;
+    color: white;
+    
+}
+body
+{
+    margin-left: 2%;
+    margin-top: 2%;
+}

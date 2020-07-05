@@ -1,7 +1,8 @@
 import React from 'react';  
 import './style.css';  
 import axios from 'axios';
-
+import { setCookie } from '../App';
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 class Popup extends React.Component {
     
     constructor(props)
@@ -26,14 +27,16 @@ class Popup extends React.Component {
         }
      axios.post('http://localhost:5000/registers/fin/',
         data,  {headers:{'Content-Type': 'application/json','Accept': 'application/json'}
-    } ) .then(res => {this.setState({user:res.data});})
+    } ) .then(res => {this.setState({user:res.data});setCookie('username',this.state.name,1000);})
     .catch(function(error){console.log(error.message)});
     
     console.log(this.state.user);
     }
     submit= () =>
     {
-       const p=this.state.user.password;
+       const p=this.state.user["password"];
+        console.log(p);
+        console.log(this.state.password);
        if(p==this.state.password)
        {
            this.setState({go:'yes'});
@@ -46,10 +49,11 @@ class Popup extends React.Component {
         this.setState({
             name:e.target.value
         });
-        //this.check(e);
+        
     }
     setpassword = (e) =>
     {
+        this.check(this.state.name);
         this.setState({
             password:e.target.value
         });
@@ -59,6 +63,10 @@ class Popup extends React.Component {
 
   render() {  
 
+    if(this.state.go=="yes")
+    {
+        return(<Redirect to="/To-do-app/user/activity/"></Redirect>);
+    }
    
 return (  
 <div className='popup'>  
@@ -74,7 +82,7 @@ return (
      <input className="size1" type="text" onChange={this.setusername} /> 
      <p className="popup-heading2">Password:</p>
      <input className="size1" type="text" onChange={this.setpassword} />
-     {this.state.name!='' && this.check(this.state.name)}
+     
 
 
     <br></br>

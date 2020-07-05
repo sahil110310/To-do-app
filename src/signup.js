@@ -4,7 +4,7 @@ import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
-
+import { setCookie } from './App';
 class Signup extends Component {
 
     constructor(props)
@@ -42,14 +42,11 @@ class Signup extends Component {
             "username":this.state.name
         }
         console.log(data);
-        axios.post('http://localhost:5000/activity/add/',
-        data1,  {headers:{'Content-Type': 'application/json','Accept': 'application/json'}
-    } ) .then(res => {})
-    .catch(function(error){console.log(error.message);console.log("RR");});
+      
     
      axios.post('http://localhost:5000/registers/add/',
         data,  {headers:{'Content-Type': 'application/json','Accept': 'application/json'}
-    } ) .then(res => {this.setState({user:res.data});})
+    } ) .then(res => {this.setState({user:this.state.name});})
     .catch(function(error){console.log(error.message);console.log("RR");});
     
     
@@ -76,7 +73,7 @@ class Signup extends Component {
     }
   render()
   {
-      
+      console.log(this.state.user);
     if(this.state.user!=null)
     {
        return(<Redirect to="/To-do-app/user/activity/"></Redirect>);
