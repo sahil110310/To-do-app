@@ -42,7 +42,7 @@ class Popup2 extends React.Component {
         console.log(data);
       
     
-     axios.post('http://localhost:5000/registers/add/',
+     axios.post('https://sahilsavaliyatodo.herokuapp.com/registers/add/',
         data,  {headers:{'Content-Type': 'application/json','Accept': 'application/json'}
     } ) .then(res => {this.setState({user:res.data});setCookie('username',this.state.name,100000);})
     .catch(function(error){console.log(error.message);console.log("RR");});

@@ -25,7 +25,7 @@ class Popup extends React.Component {
         {
             "username":this.state.name
         }
-     axios.post('http://localhost:5000/registers/fin/',
+     axios.post('https://sahilsavaliyatodo.herokuapp.com/registers/fin/',
         data,  {headers:{'Content-Type': 'application/json','Accept': 'application/json'}
     } ) .then(res => {this.setState({user:res.data});setCookie('username',this.state.name,1000);})
     .catch(function(error){console.log(error.message)});

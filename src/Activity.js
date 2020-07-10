@@ -33,11 +33,11 @@ class Activity extends Component {
         "username" : this.state.username,
         
     }
-      axios.post("http://localhost:5000/activity/find/",
+      axios.post("https://sahilsavaliyatodo.herokuapp.com/activity/find/",
     data, {headers:{'Content-Type': 'application/json','Accept': 'application/json'}})
     .then(res => {
       if(res.data==null){
-        axios.post("http://localhost:5000/activity/add/",
+        axios.post("https://sahilsavaliyatodo.herokuapp.com/activity/add/",
         data, {headers:{'Content-Type': 'application/json','Accept': 'application/json'}})
         .then(res => {
            this.setState({activities:res.data.activity});
@@ -65,11 +65,11 @@ class Activity extends Component {
           "activity" : this.state.activity
       }
       this.setState({activity:'',errmessage:null});
-      axios.post("http://localhost:5000/activity/fin/",
+      axios.post("https://sahilsavaliyatodo.herokuapp.com/activity/fin/",
       data, {headers:{'Content-Type': 'application/json','Accept': 'application/json'}})
       .then(res => {
         if(res.data==null){
-          axios.post("http://localhost:5000/activity/add/",
+          axios.post("https://sahilsavaliyatodo.herokuapp.com/activity/add/",
           data, {headers:{'Content-Type': 'application/json','Accept': 'application/json'}})
           .then(res => {
              this.setState({activities:res.data.activity});
@@ -94,7 +94,7 @@ class Activity extends Component {
         "username" : this.state.username,
         "activity" : e.target.value
     }
-        axios.post("http://localhost:5000/activity/del/",
+        axios.post("https://sahilsavaliyatodo.herokuapp.com/activity/del/",
         data, {headers:{'Content-Type': 'application/json','Accept': 'application/json'}
     } ) .then(res => {this.setState({activities:res.data.activity})})
     .catch(function(error){console.log(error.message);console.log("RR");});
@@ -114,7 +114,7 @@ class Activity extends Component {
      <input type="text" onChange={this.setactivity} value={this.state.activity}/>
      <button className="activity-button2" onClick={this.addin} >ADD</button>
      {this.state.errmessage!=null && <h1>{this.state.errmessage}</h1>}
-     
+      
      <div className="box1">
        <h1 className="activity-h1">TODO LIST</h1>
      {this.state.activities!=null && this.state.activities.map((activity) =>
